@@ -3,10 +3,12 @@ import {Dispatch} from "redux";
 
 
 
-type GalleryType={
+
+
+export type GalleryType={
     photo: {id:string,photoUrl:string,comment:string}
 }
-type initialStateType=GalleryType[]
+export type initialStateType=GalleryType[]
 var id = "id" + Math.random().toString(16).slice(2)
 const initialState: initialStateType = [
     {photo:
@@ -41,7 +43,6 @@ export const updateCommentAC = (comment:string,id:string) => ({
     comment,
     id
 } as const)
-
 
 
 export const addNewPhotoTC:any=(photoUrl:string,comment:string)=>(dispatch:Dispatch)=>{

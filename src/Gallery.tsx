@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {AppRootStateType} from "./store";
 import {useDispatch, useSelector} from "react-redux";
-import {addNewPhotoTC, updateCommentTC} from "./photoReducer";
+import {addNewPhotoTC, initialStateType, updateCommentTC} from "./photoReducer";
 import s from './Gallery.module.css'
 import {EditableSpan} from "./EditableSpan/EditableSpan";
 import {Box, Button, Modal} from "@mui/material";
@@ -9,11 +9,11 @@ import {Box, Button, Modal} from "@mui/material";
 export const Gallery: React.FC = () => {
 
     const dispatch = useDispatch()
-    let [imgAddress, setImgAddress] = useState<any>('')
+    let [imgAddress, setImgAddress] = useState<string>('')
     let [isOpen, setIsOpen] = useState<boolean>(false)
     let [url, setUrl] = useState<string>('')
-    let [comment, setComment] = useState<any>('')
-    const photos: any = useSelector<AppRootStateType>((state) => (state.photos))
+    let [comment, setComment] = useState<string>('')
+    const photos = useSelector<AppRootStateType,initialStateType>((state) => (state.photos))
 
 
     const addPhoto = (photoUrl: string, comment: string) => {
@@ -37,6 +37,7 @@ export const Gallery: React.FC = () => {
 
     return (
         <div className={s.gallery}>
+            <h3>use <a href={'https://unsplash.com'} target={'_blank'}>https://unsplash.com</a> to upload images</h3>
             <input placeholder={'Type image address'}
                    value={imgAddress}
                    onChange={e => setImgAddress(e.currentTarget.value)}/>
